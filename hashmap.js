@@ -35,7 +35,8 @@ class HashMap {
     const index = this._findSlot(key);
     this._slots[index] = {
       key,
-      value
+      value,
+      deleted: false
     };
     this.length++;
   }
@@ -58,7 +59,7 @@ class HashMap {
     for (let i = start; i < start + this._capacity; i++) {
       const index = i % this._capacity;
       const slot = this._slots[index];
-      if (slot === undefined || (slot.key == key && !slot.deleted)) {
+      if (slot === undefined || (slot.key === key && !slot.deleted)) {
         return index;
       }
     }
